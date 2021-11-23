@@ -1,9 +1,9 @@
 {
-  "type": "module",
   "name": "api-skeleton",
   "version": "1.0.0",
   "description": "",
   "main": "src/app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon src/app.js"

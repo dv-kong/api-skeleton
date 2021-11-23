@@ -1,8 +1,8 @@
 import morgan from 'morgan'; 
-import winston from 'winston';
-import Logger from '../helpers/logger'
+// import winston from 'winston';
+// import Logger from '../helpers/logger'
 
-const logger = new Logger(winston);
+// const logger = new Logger(winston);
 
 const middlewares = {
      apiLogger:morgan('dev')
@@ -11,4 +11,4 @@ const middlewares = {
 
 // console.log(logger);
 export default middlewares;
-export {logger}
+// export {logger}
