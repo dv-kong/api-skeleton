@@ -2,6 +2,7 @@ import morgan from 'morgan';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import winston from 'winston';
+import cors from 'cors';
 // import Logger from '../helpers/logger'
 
 // const logger = new Logger(winston);
@@ -14,10 +15,11 @@ import winston from 'winston';
  * - Winston
  */
 const middlewares = {
-     cookie: cookieParser(),
-     apiLogger: morgan('dev'),
-     urlencoded: express.urlencoded({extended: false}),
      json: express.json(),
+     urlencoded: express.urlencoded({extended: false}),
+     cookie: cookieParser(),
+     cors: cors(),
+     apiLogger: morgan('dev'),
 }
 
 export default middlewares;

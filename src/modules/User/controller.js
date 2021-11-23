@@ -28,14 +28,10 @@ class UserController {
 
   
   getUsers = async (req, res, next) => {
-  
-    await res.status(200).json(this.#models);
     try {
       console.log('test');
-      // const docs = await this.#models;
-      // console.log(docs)
-      await res.status(200).json(this.#models);
-      // res.status(200).json(docs);
+      const docs = await this.#models;
+      await res.status(200).json(docs);
     } catch (err) {
       console.log(err);
     }

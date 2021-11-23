@@ -8,7 +8,8 @@ import users from './Users.json';
  */
 
 const models = users; // TODO later
-console.log(users);
+// console.log(users);
+console.log(`users log`);
 const controller = new UserController(models)
 const routes = router(controller)
 

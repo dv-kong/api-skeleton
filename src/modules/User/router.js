@@ -5,7 +5,7 @@ export default (controller) => {
     
     const router = Router();
     
-    router.route('/users').get(controller.getUsers);
+    router.route('/all').get(controller.getUsers);
     // router.route('/users').get(controller.getUsers());
     // router.route('/users').get(controller.getUsers);
 
