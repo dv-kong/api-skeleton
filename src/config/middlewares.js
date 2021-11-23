@@ -11,6 +11,7 @@ import winston from 'winston';
  * - Cookie Parser: Parse Cookie header and populate req.cookies with an object keyed by the cookie names. 
  * - ApiLogger (morgan): Logs all requests to the console
  * - Json body parser: Parse the body request to JSON format
+ * - Winston
  */
 const middlewares = {
      cookie: cookieParser(),

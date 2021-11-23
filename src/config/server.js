@@ -22,7 +22,6 @@ middlewares(middlewares) {
  */
 routes(routes) {
     for(const path in routes) {
-        console.log(path);
         this.#http.use(path, routes[path]);
     }
 }
