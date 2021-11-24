@@ -1,5 +1,6 @@
 // import ApiError from "../../helpers/ApiError"
 import express from "express";
+import User from './model';
 class UserController {
   #models;
   constructor(models) {
@@ -23,6 +24,17 @@ class UserController {
   //     res.send(error.message);
   //   }
   // };
+
+  addUsers = async (req, res, next) => {
+
+    // try {
+    //   const users = await User.create({ ...req.body });
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  };
+
+
 
   updateUser = async (req, res, next) => {};
 

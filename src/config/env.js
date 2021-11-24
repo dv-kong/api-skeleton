@@ -8,6 +8,7 @@ const env = {
   db_password: process.env.DB_PASSWORD,
   db_dialect: process.env.DB_DRIVER,
   db_host: process.env.DB_HOST,
+  port: process.env.SERVER_PORT
 };
 
 export default env;

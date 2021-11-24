@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import db from "../../config/db.js";
-// import User from "../User/model";
-// import Book from "../Book/model";
+import User from "../User/model";
+import Book from "../Book/model";
 
 class Rent extends Model {
   static init(sequelize) {

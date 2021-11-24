@@ -23,9 +23,18 @@ server.routes(routes);
 (async () => {
   try {
     await db.associateAll(db.sequelize.models);
-    await db.sequelize.sync({alter:true}); // alter:true = will modify the database tables with the module models
-    await server.start(env.db_port);
-    console.log("Connected to database.");
+    // await db.sequelize.sync({alter:true});
+    await db.sequelize.sync({
+
+      force: true
+
+
+    });
+    
+    
+    // alter:true = will modify the database tables with the module models
+    await server.start(env.port);
+    console.log(`Database started on port ${env.db_port}.`);
   } catch (error) {
     console.error(error);
   }
