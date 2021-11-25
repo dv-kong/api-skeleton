@@ -1,6 +1,8 @@
 // import ApiError from "../../helpers/ApiError"
 import express from "express";
-import User from './model';
+import {User, validate} from './model';
+import Jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 class UserController {
   #models;
   constructor(models) {
@@ -9,10 +11,11 @@ class UserController {
   /**
    * @login takes a request, a response and a next function
    * @param
-   *
    */
 
   signUp = async (req, res, next) => {};
+  
+  
   // login = async (req, res, next) => {
   //   try {
   //     const { email, password } = req.body;

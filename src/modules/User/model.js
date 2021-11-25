@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import db from "../../config/db.js";
+import Joi from "joi";
 
 class User extends Model {
   static init(sequelize) {
@@ -40,7 +41,7 @@ class User extends Model {
 
   static associate(models) {
     // define association between User and Books
-    this.hasMany(models.Book, {foreignKey: "user_id"}); // user has many books 
+    this.hasMany(models.Book, { foreignKey: "user_id" }); // user has many books
     // this.hasMany(models.Book, { as: "books" });
     // User.hasMany(models.Book)
     // models.Book.hasMany(User)
@@ -49,6 +50,21 @@ class User extends Model {
     return this;
   }
 }
+
+/**
+ * @func validate Data validator
+ * @param user User Object contains users data
+ * @returns The data if it's valid / error message if it's not valid
+ */
+
+export const validate = (user) => {
+  const model = Joi.object({
+    email: Joi.string().required(),
+    password: Joi.string.required(),
+  });
+
+  return model.validate(user);
+};
 
 User.init(db.sequelize);
 
