@@ -1,4 +1,4 @@
-import { Model, DataTypes } from "sequelize";
+import { Model, DataTypes, UUID, UUIDV4 } from "sequelize";
 import db from "../../config/db.js";
 import Joi from "joi";
 
@@ -7,9 +7,9 @@ class User extends Model {
     return super.init(
       {
         id: {
-          type: DataTypes.STRING,
-          // type: Sequelize.UUID,
-          // defaultValue: Sequelize.UUIDV4,
+          // type: DataTypes.STRING,
+          type: DataTypes.UUID,
+          defaultValue: DataTypes.UUIDV4,
           primaryKey: true,
           allowNull: false,
           unique: true,

@@ -6,7 +6,8 @@ class Book extends Model {
   static init(sequelize) {
     // !constructor so no instance
 
-    return super.init( // super = inherit "init" method from the parent class
+    return super.init(
+      // super = inherit "init" method from the parent class
       {
         id: {
           type: DataTypes.STRING,
@@ -28,13 +29,11 @@ class Book extends Model {
   }
 
   static associate(models) {
-    // this.belongsTo(models.User); 
+    // this.belongsTo(models.User);
     // this.belongsToMany(models.User, {through:models.Rent}); // MODIFIED
-    this.belongsTo(models.User, {foreignKey: "user_id"}); // book has belongs to many users 
+    this.belongsTo(models.User, { foreignKey: "user_id" }); // book has belongs to many users
 
     // this.hasMany(models.Book, {foreignKey: "userId"});
-
-
 
     // models.Book, {as: 'books'}
     // this.belongsToMany(models.User, {through: 'rent'}); // creates pivot table without needing to declare a module

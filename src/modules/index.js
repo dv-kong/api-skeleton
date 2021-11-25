@@ -6,5 +6,6 @@ const routes = {
   "/books": BookRouter, // TODO: Order of table creation
   "/users": UserRouter,
   "/rents": RentRouter,
+  //   "*": 404Router,
 };
 export default routes;

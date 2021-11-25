@@ -25,8 +25,8 @@ server.routes(routes);
     await db.associateAll(db.sequelize.models);
     // await db.sequelize.sync({alter:true});
     await db.sequelize.sync({
-
-      force: true
+alter:true // TODO: 
+      // force: true
 
 
     });
