@@ -13,7 +13,7 @@ class BookController {
       const books = await this.#models;
       await res.status(200).json(books);
     } catch (err) {
-      console.log(err);
+      next(err)
     }
   };
 

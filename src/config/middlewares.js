@@ -14,12 +14,12 @@ import cors from 'cors';
  * - Json body parser: Parse the body request to JSON format
  * - Winston
  */
-const middlewares = {
+const middlewares = { // server.use(middleware)
      json: express.json(),
      urlencoded: express.urlencoded({extended: false}),
      cookie: cookieParser(),
      cors: cors(),
-     apiLogger: morgan('dev'),
+     apiLogger: morgan('dev')
 }
 
 export default middlewares;

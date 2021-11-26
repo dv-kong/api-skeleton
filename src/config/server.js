@@ -28,7 +28,7 @@ routes(routes) {
 
 /** 
  * @func errorHandler make the server the error handler
- * @param errorHandler custom class inherithing from Error
+ * @param errorHandler custom class inheriting from Error
  */
 errorHandler(errorHandler) {
     this.#http.use(errorHandler);

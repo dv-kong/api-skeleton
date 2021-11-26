@@ -14,7 +14,9 @@ class RentController {
     //   const books = await this.#models;
       await res.status(200).json({message:"test"});
     } catch (err) {
-      console.log(err);
+    next(err)
+
+
     }
   };
 

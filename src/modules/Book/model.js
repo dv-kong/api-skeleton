@@ -31,7 +31,9 @@ class Book extends Model {
   static associate(models) {
     // this.belongsTo(models.User);
     // this.belongsToMany(models.User, {through:models.Rent}); // MODIFIED
-    this.belongsTo(models.User, { foreignKey: "user_id" }); // book has belongs to many users
+    // this.belongsToMany(models.User, { foreignKey: "user_id" }); // book has belongs to many users
+    this.belongsToMany(models.User, {through: models.Rent});
+    // this.belongsTo(models.User, { foreignKey: "user_id" }); // book has belongs to many users
 
     // this.hasMany(models.Book, {foreignKey: "userId"});
 

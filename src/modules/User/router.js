@@ -5,13 +5,12 @@ export default (controller) => {
 
   router.route("/all").get(controller.getUsers);
   // router.route('/users').get(controller.getUsers());
-  //   router.route("/add-users").post(controller.addUseZrs);
-  router.route("/sign-up").post(controller.signUp);
+  router.route("/signup").post(controller.signUp);
   router.route("/login").post(controller.login);
+  router.route('/delete').delete(controller.deleteUser);
+  router.route('/update').put(controller.updateUser);
 
   // router.route('/signin').post(controller.signIn);
-  // router.route('/update').post(controller.updateUser);
-  // router.route('/delete').post(controller.deleteUser);
 
   return router;
 };

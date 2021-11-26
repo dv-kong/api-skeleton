@@ -22,5 +22,4 @@ Rent.init(db.sequelize);
 
 export default Rent;
 
-User.belongsToMany(Book, { through: Rent });
-Book.belongsToMany(User, { through: Rent });
+
