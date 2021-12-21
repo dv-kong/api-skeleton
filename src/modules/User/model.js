@@ -26,10 +26,22 @@ class User extends Model {
           allowNull: false,
           unique: true,
         },
+        role: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
         password: {
           type: DataTypes.STRING,
           allowNull: false,
         },
+        access_token: {
+          type: DataTypes.STRING,
+          allowNull: true
+        },
+        refresh_token: {
+          type: DataTypes.STRING,
+          allowNull: true
+        }
       },
       {
         sequelize,

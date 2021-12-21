@@ -13,46 +13,57 @@ class UserController {
    * @login takes a request, a response and a next function
    * @param
    */
-
   signUp = async (req, res, next) => {
     const { email, password, first_name, last_name } = req.body;
     try {
-      // TODO: Data validation
-      // Password hash instructions with bcrypt standard
-      const salt = await bcrypt.genSalt(10); // param = saltRounds
-      const hashedPassword = await bcrypt.hash(password, salt);
-      // Check if the email is already registered in the database.
+
       const user = await User.findOne({
         attributes: ["email"],
         where: { email: email },
       });
+
+       // TODO: if user already exist, send/throw an error
+      // Check if the email is already registered in the database.
       if (user) {
         // if users is found, throw error
         //TODO: fix use of return?
 
         throw new ApiError(403, "Email already exists!");
       }
-      // TODO: if user already exist, send/throw an error
+
+      // TODO: Data validation
+      // Password hash instructions with bcrypt standard
+      const salt = await bcrypt.genSalt(10); // param = saltRounds
+      const hashedPassword = await bcrypt.hash(password, salt);
+     
       await User.create({
         email,
         password: hashedPassword,
         first_name,
         last_name,
+        role: "user"
       });
+
       return res
         .status(200)
         .json({ message: "Successfully created an account." });
+        
     } catch (error) {
       next(error);
     }
   };
+
+
+
+
+
 
   login = async (req, res, next) => {
     const { email, password } = req.body;
 
     try {
       const user = await User.findOne({
-        attributes: ["email", "password", "id"],
+        attributes: ["email", "password", "id", "role"],
         where: { email: email },
       });
 
@@ -63,13 +74,27 @@ class UserController {
         throw new ApiError(400, "Incorrect credentials.");
       }
 
-      user.access_token = jwt.sign({ id: user.id }, env.jwt_secret, {
-        expiresIn: "5m",
+      /**
+       * @object "user" contains User datas  
+       * @property access_token contains jwt token 
+       * @property refresh_token define time to refresh an access_token
+       */
+      // Store the tokens in the user object
+
+      user.access_token = jwt.sign({ id: user.id, role: user.role }, env.jwt_secret, {
+        expiresIn: "5m", // TODO: change to 15m
       });
       user.refresh_token = jwt.sign({ id: user.id }, env.jwt_secret, {
-        expiresIn: "60d",
+        expiresIn: "30d",
       });
+      // Save the user properties to the database
+      await user.save();
+
+      // Store refresh token and his properties in cookie with "refresh_token" key
+      // The HttpOnly flag is an additional flag included in a Set-Cookie HTTP response header. It is used to prevent a Cross-Site Scripting exploit from gaining access to the session cookie and hijacking the victim's session.
+      res.cookie('refresh_token', user.refresh_token, { expiresIn: '30d', httpOnly: true });
       res.status(200).json({ token: user.access_token });
+
     } catch (error) {
       next(error);
     }
@@ -86,7 +111,7 @@ console.log("TODO: Update user");
   getUsers = async (req, res, next) => {
     try {
       const docs = await this.#models;
-      await res.status(200).json(docs);
+      await res.status(200).json({message: "GET ALL USERS FROM DB"});
     } catch (err) {
       next(err);
     }

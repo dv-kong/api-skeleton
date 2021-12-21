@@ -19,7 +19,7 @@ server.errorHandler(handleError);
     await db.associateAll(db.sequelize.models);
     // await db.sequelize.sync({alter:true});
     await db.sequelize.sync({
-alter:true // TODO: 
+      alter:true // TODO: 
       // force: true
 
 
